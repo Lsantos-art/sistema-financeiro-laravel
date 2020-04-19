@@ -31,7 +31,7 @@ class UserController extends Controller
 
         $data['image'] = $user->image;
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $nameData = $user->id.$user->name;
+            $nameData = $user->id.$user->email;
             if ($user->image)
                 $name = $nameData;
             else
