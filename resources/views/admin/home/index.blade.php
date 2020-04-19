@@ -31,7 +31,7 @@
                   <span class="info-box-text my-3 text-center col-md-12">Bem vindo(a) de volta!
                     <span class="text-success">{{ auth()->user()->name }}</span>
                     </span>
-                @if (auth()->user()->balance->amount > 0)
+                @if (auth()->user()->balance->amount >= 0)
                 <hr>
                     <span class="info-box-number text-center col-md-12 my-2">
                     <i class="fas fa-money-check-alt text-primary"></i>
