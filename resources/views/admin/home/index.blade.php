@@ -28,17 +28,10 @@
 
             <div class="row info-box-content d-flex justify-content-center">
                 <div class="">
-                  <span class="info-box-text my-3 text-center col-md-12">Bem vindo(a) de volta!
+                <span class="info-box-text my-3 text-center col-md-12">Bem vindo(a) de volta!
                     <span class="text-success">{{ auth()->user()->name }}</span>
-                    </span>
-                @if (auth()->user()->balance->amount > 0)
-                <hr>
-                    <span class="info-box-number text-center col-md-12 my-2">
-                    <i class="fas fa-money-check-alt text-primary"></i>
-                    Seu saldo é de <a href="{{ route('balance') }}">R${{ number_format(auth()->user()->balance->amount, 2, ',', '.') }}</a>
-                    </span>
+                </span>
                 </div>
-                @endif
             </div>
             <!-- /.info-box-content -->
             <div class="info-box-content card p-2 text-center col-md-12">
