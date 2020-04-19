@@ -30,8 +30,9 @@ class UserController extends Controller
 
 
         $data['image'] = $user->image;
+        $prefix = 'kekimgprofilebank';
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $nameData = $user->id.$user->email;
+            $nameData = $user->id.$prefix;
             if ($user->image)
                 $name = $nameData;
             else
