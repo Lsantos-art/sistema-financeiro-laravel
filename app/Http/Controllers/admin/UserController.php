@@ -31,7 +31,6 @@ class UserController extends Controller
 
 
         $data['image'] = $user->image;
-        $prefix = 'https://kek-bank.s3.amazonaws.com/';
         $sufix = 'kek-bank';
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $nameData = $user->id.$sufix;
@@ -42,15 +41,13 @@ class UserController extends Controller
 
             $extension = $request->image->extension();
             $nameFile = "{$name}.{$extension}";
-            $data['image'] = $nameFile;
 
-            $storagePath = $upload = $request->image->storeAs('users', $nameFile, $options = [
+            $upload = $request->image->storeAs('users', $nameFile, $options = [
                 'ACL'           => 'public-read',
             ]);
-            $data['image'] = $prefix.$storagePath;
+            $url = Storage::url('users-local/'.$nameFile);
+            $data['image'] = $url;
             $upload = $user->update($data);
-            // $url = 'https://kek-bank.s3.amazonaws.com/users/';
-
 
             if (!$upload)
                     return redirect()

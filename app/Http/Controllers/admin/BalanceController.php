@@ -98,6 +98,12 @@ class BalanceController extends Controller
    //transfer store
    public function transferStore(MoneyValidationFormRequest $request, User $user)
    {
+    $userBalance = auth()->user()->balance->amount;
+    if ($request->value > $userBalance)
+                    return redirect()
+                            ->route('transfer')
+                            ->with('error', 'Que feio servidor, você não pode comer biscoitos!');
+
     if(!$sender = $user->find($request->sender_id))
                    return redirect()
                             ->route('transfer')
