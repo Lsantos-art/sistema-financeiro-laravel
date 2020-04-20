@@ -42,4 +42,6 @@ Route::get('/', 'Site\SiteController@index')->name('site.index');
 // Auth routes
 Auth::routes();
 
+//test
+
 
