@@ -45,7 +45,7 @@ class UserController extends Controller
             $upload = $request->image->storeAs('users', $nameFile, $options = [
                 'ACL'           => 'public-read',
             ]);
-            $url = Storage::url('users-local/'.$nameFile);
+            $url = Storage::url('users/'.$nameFile);
             $data['image'] = $url;
             $upload = $user->update($data);
 
