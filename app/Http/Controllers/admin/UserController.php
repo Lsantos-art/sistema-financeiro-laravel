@@ -7,6 +7,7 @@ use App\Http\Requests\updateProfileFormRequest;
 use App\Mail\newLaravelTips;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use stdClass;
 
 class UserController extends Controller
@@ -30,9 +31,10 @@ class UserController extends Controller
 
 
         $data['image'] = $user->image;
-        $prefix = 'kekimgprofilebank';
+        $prefix = 'https://kek-bank.s3.amazonaws.com/';
+        $sufix = 'kek-bank';
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $nameData = $user->id.$prefix;
+            $nameData = $user->id.$sufix;
             if ($user->image)
                 $name = $nameData;
             else
@@ -42,7 +44,12 @@ class UserController extends Controller
             $nameFile = "{$name}.{$extension}";
             $data['image'] = $nameFile;
 
-            $upload = $request->image->storeAs('users', $nameFile);
+            $storagePath = $upload = $request->image->storeAs('users', $nameFile, $options = [
+                'ACL'           => 'public-read',
+            ]);
+            $data['image'] = $prefix.$storagePath;
+            $upload = $user->update($data);
+            // $url = 'https://kek-bank.s3.amazonaws.com/users/';
 
 
             if (!$upload)

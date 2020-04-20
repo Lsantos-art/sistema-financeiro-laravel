@@ -14,7 +14,7 @@
                 <div class="my-2">
                   @if (auth()->user()->image)
                     <div class="my-3 p-2 d-flex justify-content-center">
-                        <img class="rounded-circle border border-dark" src="{{ url('storage/users/'.auth()->user()->image) }}" alt="{{ auth()->user()->image }}" style="max-width: 100px;">
+                        <img class="rounded-circle border border-dark" src="{{ url(auth()->user()->image) }}" alt="{{ auth()->user()->image }}" style="max-width: 100px;">
                     </div>
                     @else
                     <div class="my-3 d-flex justify-content-center">

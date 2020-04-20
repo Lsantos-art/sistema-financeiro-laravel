@@ -20,7 +20,7 @@
 
             @if (auth()->user()->image)
             <div class="form-group">
-                <img class="img-thumbnail" src="{{ url('storage/users/'.auth()->user()->image) }}" alt="{{ auth()->user()->image }}" style="max-width: 50px;">
+                <img class="img-thumbnail" src="{{ url(auth()->user()->image) }}" alt="{{ auth()->user()->image }}" style="max-width: 50px;">
             </div>
             @endif
 
