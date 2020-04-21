@@ -19,7 +19,7 @@ class UserController extends Controller
     }
 
     //Profile store update
-    public function profileUpdate(updateProfileFormRequest $request)
+    public function profileUpdate(Request $request)
     {
         $user = auth()->user();
         $data = $request->all();
@@ -42,10 +42,10 @@ class UserController extends Controller
             $extension = $request->image->extension();
             $nameFile = "{$name}.{$extension}";
 
-            $upload = $request->image->storeAs('users', $nameFile, $options = [
+            $upload = $request->image->storeAs('users-local', $nameFile, $options = [
                 'ACL'           => 'public-read',
             ]);
-            $url = Storage::url('users/'.$nameFile);
+            $url = Storage::url('users-local/'.$nameFile);
             $data['image'] = $url;
             $upload = $user->update($data);
 
